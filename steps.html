@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get a Free Key | Dev Modz</title>
+    <style>
+        :root { --bg: #000000; --card: #121212; --text: #ffffff; --accent: #ffffff; --warning-bg: #1a1505; --warning-border: #3d3002; --warning-text: #eec136; }
+        
+        body { 
+            background-color: var(--bg); 
+            color: var(--text); 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            margin: 0; 
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .container { 
+            width: 100%; 
+            max-width: 400px; 
+            text-align: center; 
+        }
+
+        /* --- LOGO FIX FOR PC & MOBILE --- */
+        .key-icon { 
+            background: #1a1a1a; 
+            width: 80px; 
+            height: 80px; 
+            border-radius: 50%; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            margin: 0 auto 15px; 
+            border: 1px solid #333; 
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(255,255,255,0.05);
+        }
+
+        .key-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+        }
+
+        @media (min-width: 768px) {
+            .container { max-width: 480px; }
+            .key-icon { width: 110px; height: 110px; } 
+        }
+
+        h1 { font-size: 28px; font-weight: bold; margin-bottom: 10px; }
+        .subtitle { color: #888; font-size: 14px; margin-bottom: 30px; }
+        
+        .progress-container { display: flex; align-items: center; justify-content: space-between; margin-bottom: 25px; }
+        .step-indicator { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #888; }
+        .circle { width: 22px; height: 22px; border: 2px solid #333; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 10px; }
+        .circle.active { border-color: var(--text); color: var(--text); }
+        .line { flex-grow: 1; height: 2px; background: #222; margin: 0 15px; }
+
+        .card { background: var(--card); border: 1px solid #222; border-radius: 24px; padding: 30px; text-align: left; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+        h2 { font-size: 20px; margin-bottom: 15px; }
+        .card-p { color: #888; font-size: 15px; line-height: 1.5; margin-bottom: 25px; }
+
+        .warning { background: var(--warning-bg); border: 1px solid var(--warning-border); border-radius: 12px; padding: 15px; display: flex; gap: 12px; margin-bottom: 30px; }
+        .warning-icon { color: var(--warning-text); font-size: 18px; }
+        .warning-title { color: var(--warning-text); font-weight: bold; font-size: 14px; }
+        .warning-text { color: #8a701f; font-size: 12px; }
+
+        .btn { width: 100%; padding: 16px; background: #ffffff; color: #000; border: none; border-radius: 14px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s ease; }
+        .btn:hover { transform: scale(1.02); background: #00ff88; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="key-icon">
+        <img src="./assets/logo.png" alt="UKM">
+    </div>
+    <h1>Get a Free Key</h1>
+    <p class="subtitle">Complete the step below to receive your access key.</p>
+
+    <div class="progress-container">
+        <div class="step-indicator">
+            <div class="circle active">1</div>
+            <span>Step 1 of 1</span>
+        </div>
+        <div class="line"></div>
+        <div class="circle" style="background: #111;"></div>
+    </div>
+
+    <div class="card">
+        <h2>First Step</h2>
+        <p class="card-p">To continue, click the button below to complete the first step. You will be redirected and then return to this page once finished.</p>
+
+        <div class="warning">
+            <div class="warning-icon">⚠️</div>
+            <div>
+                <div class="warning-title">Security Notice</div>
+                <div class="warning-text">The use of bots or any kind of automation will result in your key being banned.</div>
+            </div>
+        </div>
+
+        <button class="btn" onclick="location.href='https://linkpays.in/NvoI'">
+            Continue to Step ➜
+        </button>
+    </div>
+</div>
+
+</body>
+</html>
