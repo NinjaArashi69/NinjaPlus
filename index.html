@@ -27,21 +27,6 @@
             margin-top: 50px;
         }
 
-        /* --- UI Visibility Controls --- */
-        #mainContainer { display: none; }
-        #bypassContainer { display: none; }
-
-        /* --- BYPASS ERROR CARD --- */
-        .error-card { 
-            background: #1a0a0a; 
-            border: 1px solid #441111; 
-            border-radius: 28px; 
-            padding: 40px 30px; 
-            box-shadow: 0 10px 40px rgba(255,0,0,0.1);
-        }
-        .error-icon { font-size: 50px; margin-bottom: 20px; }
-        .error-title { color: var(--error); font-size: 24px; font-weight: bold; margin-bottom: 15px; }
-
         .key-icon { 
             background: #1a1a1a; 
             width: 85px; 
@@ -122,8 +107,6 @@
             box-shadow: 0 10px 20px rgba(0,255,136,0.2);
         }
 
-        .btn-red { background: var(--error); color: white; margin-top: 20px; }
-
         .footer { 
             margin-top: 80px; 
             color: #333; 
@@ -143,14 +126,14 @@
         </div>
 
         <h1>Access Unlocked</h1>
-        <p class="subtitle">Your device-locked license key is ready.</p>
+        <p class="subtitle">Your license key is ready.</p>
 
         <div class="card">
             <h2>Generation Success!</h2>
-            <p class="card-p">This key is locked to your device. Share it, and it won't work for others.</p>
+            <p class="card-p">Here is your newly generated key. Copy it to proceed.</p>
 
             <div class="key-box">
-                <span id="finalKey">SECURE FETCHING...</span>
+                <span id="finalKey">GENERATING...</span>
             </div>
 
             <button class="btn" id="copyBtn" onclick="copyKey()">
@@ -159,62 +142,18 @@
         </div>
     </div>
 
-    <div id="bypassContainer">
-        <div class="error-card">
-            <div class="error-icon">🚫</div>
-            <div class="error-title">Bypass Detected!</div>
-            <p style="color:#888; font-size: 14px; line-height: 1.5;">Direct access is prohibited. Please use the official link from the script to generate your key.</p>
-            <button class="btn btn-red" onclick="location.href='steps.html'">RETURN TO STEPS</button>
-        </div>
-    </div>
-
     <div class="footer">FOX VPN SECURITY SYSTEM</div>
 </div>
 
 <script>
-    async function checkSecurity() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const source = urlParams.get('source');
-        const referrer = document.referrer;
-        
-        if (source === "official" || referrer.includes("earnlinks.io") || referrer.includes("lootdest.org") || referrer.includes("steps.html")) {
-            if (source === "official") {
-                const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
-                window.history.replaceState({}, document.title, cleanUrl);
-            }
-            document.getElementById('mainContainer').style.display = "block";
-            generateLockedKey(); 
-        } else {
-            document.getElementById('mainContainer').style.display = "none";
-            document.getElementById('bypassContainer').style.display = "block";
-            document.getElementById('finalKey').innerText = "ACCESS DENIED";
-        }
-    }
-
-    async function generateLockedKey() {
-    try {
-        const response = await fetch('https://api.ipify.org?format=json');
-        const data = await response.json();
-        const ip = data.ip;
-
-        // Aaj ki Date (Daily expiry ke liye)
-        const day = Math.floor(Date.now() / 86400000);
-        const ipSeed = parseInt(ip.replace(/\./g, '').substring(0, 6)); 
-        
-        // Seed: IP + Date + Year (Ye App se match hona chahiye)
-        let seed = ipSeed + day + 2026; 
-        
-        function rnd() { 
-            var x = Math.sin(seed++) * 10000; 
-            return Math.abs(x - Math.floor(x)); 
-        }
-        
+    function generateKey() {
         const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
         let segments = [];
-        for(let i=0; i<4; i++) {
+        
+        for(let i = 0; i < 4; i++) {
             let s = "";
-            for(let j=0; j<4; j++) {
-                let r = Math.floor(rnd() * chars.length);
+            for(let j = 0; j < 4; j++) {
+                let r = Math.floor(Math.random() * chars.length);
                 s += chars.charAt(r);
             }
             segments.push(s);
@@ -222,17 +161,11 @@
 
         const finalKey = "FOXVPN-" + segments.join("-");
         document.getElementById('finalKey').innerText = finalKey;
-
-    } catch (err) {
-        document.getElementById('finalKey').innerText = "CONNECT TO INTERNET";
     }
-}
-
-
 
     function copyKey() {
         const keyText = document.getElementById('finalKey').innerText;
-        if(keyText.includes("SECURE") || keyText.includes("CONNECT")) return;
+        if(keyText.includes("GENERATING")) return;
 
         navigator.clipboard.writeText(keyText).then(() => {
             const btn = document.getElementById('copyBtn');
@@ -245,7 +178,8 @@
         });
     }
 
-    window.onload = checkSecurity;
+    // Generate the key as soon as the page loads
+    window.onload = generateKey;
 </script>
 </body>
 </html>
