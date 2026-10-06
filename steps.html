@@ -3,21 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GET YOUR VIP KEY | FOX ONE</title>
+    <title>GET FREE KEY | FOX ONE</title>
     <style>
-        :root { 
-            --bg: #050508; 
-            --card: rgba(15, 15, 20, 0.85); 
-            --text: #ffffff; 
-            --gold: #d4af37; 
-            --gold-light: #f3e5ab; 
-            --warning-bg: #1a1505; 
-            --warning-border: #3d3002; 
-            --warning-text: #eec136; 
-        }
+        :root { --bg: #000000; --card: #121212; --text: #ffffff; --accent: #ffffff; --warning-bg: #1a1505; --warning-border: #3d3002; --warning-text: #eec136; }
         
         body { 
-            background: radial-gradient(circle at 50% -20%, #1a1a24 0%, #000000 80%);
+            background-color: var(--bg); 
             color: var(--text); 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
             display: flex; 
@@ -33,29 +24,11 @@
             width: 100%; 
             max-width: 400px; 
             text-align: center; 
-            animation: fadeIn 1s ease-out;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .vip-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #d4af37, #f3e5ab);
-            color: #000;
-            font-size: 10px;
-            font-weight: 900;
-            letter-spacing: 2px;
-            padding: 4px 12px;
-            border-radius: 50px;
-            margin-bottom: 15px;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
-        }
-
+        /* --- LOGO FIX FOR PC & MOBILE --- */
         .key-icon { 
-            background: #111; 
+            background: #1a1a1a; 
             width: 80px; 
             height: 80px; 
             border-radius: 50%; 
@@ -63,10 +36,9 @@
             justify-content: center; 
             align-items: center; 
             margin: 0 auto 15px; 
-            border: 2px solid rgba(212, 175, 55, 0.3);
-            box-shadow: 0 0 40px rgba(212, 175, 55, 0.2), inset 0 0 20px rgba(212, 175, 55, 0.1);
+            border: 1px solid #333; 
             overflow: hidden;
-            position: relative;
+            box-shadow: 0 0 20px rgba(255,255,255,0.05);
         }
 
         .key-icon img {
@@ -80,95 +52,35 @@
             .key-icon { width: 110px; height: 110px; } 
         }
 
-        h1 { 
-            font-size: 28px; 
-            font-weight: 900; 
-            margin: 0 0 10px; 
-            background: linear-gradient(90deg, #f3e5ab, #d4af37, #f3e5ab);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 1px;
-            animation: shine 3s linear infinite;
-        }
-
-        @keyframes shine {
-            to { background-position: 200% center; }
-        }
-        
-        .subtitle { color: #888; font-size: 14px; margin-bottom: 30px; letter-spacing: 0.5px; }
+        h1 { font-size: 28px; font-weight: bold; margin-bottom: 10px; }
+        .subtitle { color: #888; font-size: 14px; margin-bottom: 30px; }
         
         .progress-container { display: flex; align-items: center; justify-content: space-between; margin-bottom: 25px; }
         .step-indicator { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #888; }
         .circle { width: 22px; height: 22px; border: 2px solid #333; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 10px; }
-        .circle.active { border-color: var(--gold); color: var(--gold); box-shadow: 0 0 10px rgba(212, 175, 55, 0.4); }
-        .line { flex-grow: 1; height: 2px; background: #222; margin: 0 15px; position: relative; }
-        .line::after { content: ''; position: absolute; top: 0; left: 0; height: 100%; width: 50%; background: linear-gradient(90deg, #333, var(--gold)); }
+        .circle.active { border-color: var(--text); color: var(--text); }
+        .line { flex-grow: 1; height: 2px; background: #222; margin: 0 15px; }
 
-        .card { 
-            background: var(--card); 
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(212, 175, 55, 0.15); 
-            border-radius: 24px; 
-            padding: 30px; 
-            text-align: left; 
-            box-shadow: 0 20px 60px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.05); 
-        }
-        
-        h2 { font-size: 20px; margin-bottom: 15px; font-weight: 600; color: #fff; }
-        .card-p { color: #999; font-size: 15px; line-height: 1.6; margin-bottom: 25px; }
+        .card { background: var(--card); border: 1px solid #222; border-radius: 24px; padding: 30px; text-align: left; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+        h2 { font-size: 20px; margin-bottom: 15px; }
+        .card-p { color: #888; font-size: 15px; line-height: 1.5; margin-bottom: 25px; }
 
-        .warning { 
-            background: rgba(26, 21, 5, 0.6); 
-            border: 1px solid var(--warning-border); 
-            border-radius: 12px; 
-            padding: 15px; 
-            display: flex; 
-            gap: 12px; 
-            margin-bottom: 30px; 
-            box-shadow: inset 0 0 20px rgba(238, 193, 54, 0.05);
-        }
-        .warning-icon { color: var(--warning-text); font-size: 18px; text-shadow: 0 0 10px rgba(238, 193, 54, 0.5); }
-        .warning-title { color: var(--warning-text); font-weight: bold; font-size: 14px; letter-spacing: 0.5px; }
-        .warning-text { color: #8a701f; font-size: 12px; margin-top: 4px; }
+        .warning { background: var(--warning-bg); border: 1px solid var(--warning-border); border-radius: 12px; padding: 15px; display: flex; gap: 12px; margin-bottom: 30px; }
+        .warning-icon { color: var(--warning-text); font-size: 18px; }
+        .warning-title { color: var(--warning-text); font-weight: bold; font-size: 14px; }
+        .warning-text { color: #8a701f; font-size: 12px; }
 
-        .btn { 
-            width: 100%; 
-            padding: 16px; 
-            background: linear-gradient(135deg, #d4af37 0%, #f3e5ab 50%, #d4af37 100%); 
-            background-size: 200% auto;
-            color: #000; 
-            border: none; 
-            border-radius: 14px; 
-            font-size: 16px; 
-            font-weight: 900; 
-            cursor: pointer; 
-            transition: all 0.4s ease; 
-            position: relative;
-            overflow: hidden;
-            letter-spacing: 0.5px;
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
-        }
-        
-        .btn:hover { 
-            transform: translateY(-3px); 
-            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
-            background-position: right center;
-        }
-        
-        .btn:active { transform: scale(0.98); }
+        .btn { width: 100%; padding: 16px; background: #ffffff; color: #000; border: none; border-radius: 14px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s ease; }
+        .btn:hover { transform: scale(1.02); background: #00ff88; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="vip-badge">★ VIP ACCESS ★</div>
-
     <div class="key-icon">
         <img src="./assets/logo.png" alt="UKM">
     </div>
-    
-    <h1>GET A FREE KEY</h1>
+    <h1>GET FREE KEY</h1>
     <p class="subtitle">Complete the step below to receive your access key.</p>
 
     <div class="progress-container">
