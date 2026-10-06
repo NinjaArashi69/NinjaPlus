@@ -3,19 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Access Unlocked | FOX ONE</title>
+    <title>Key Generated | FOX ONE</title>
     <style>
-        :root { 
-            --bg: #050508; 
-            --card: rgba(15, 15, 20, 0.85); 
-            --text: #ffffff; 
-            --gold: #d4af37; 
-            --gold-light: #f3e5ab; 
-            --accent: #00ff88; 
-        }
+        :root { --bg: #000000; --card: #121212; --text: #ffffff; --accent: #00ff88; --error: #ff4444; }
         
         body { 
-            background: radial-gradient(circle at 50% -20%, #1a1a24 0%, #000000 80%);
+            background-color: var(--bg); 
             color: var(--text); 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
             display: flex; 
@@ -30,31 +23,27 @@
         .container { 
             width: 100%; 
             max-width: 400px; 
-            text-align: center; 
+            text-align: center;
             margin-top: 50px;
-            animation: fadeIn 1s ease-out;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        /* --- UI Visibility Controls --- */
+        #mainContainer { display: none; }
+        #bypassContainer { display: none; }
 
-        .vip-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #d4af37, #f3e5ab);
-            color: #000;
-            font-size: 10px;
-            font-weight: 900;
-            letter-spacing: 2px;
-            padding: 4px 12px;
-            border-radius: 50px;
-            margin-bottom: 15px;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        /* --- BYPASS ERROR CARD --- */
+        .error-card { 
+            background: #1a0a0a; 
+            border: 1px solid #441111; 
+            border-radius: 28px; 
+            padding: 40px 30px; 
+            box-shadow: 0 10px 40px rgba(255,0,0,0.1);
         }
+        .error-icon { font-size: 50px; margin-bottom: 20px; }
+        .error-title { color: var(--error); font-size: 24px; font-weight: bold; margin-bottom: 15px; }
 
         .key-icon { 
-            background: #111; 
+            background: #1a1a1a; 
             width: 85px; 
             height: 85px; 
             border-radius: 50%; 
@@ -62,9 +51,9 @@
             justify-content: center; 
             align-items: center; 
             margin: -45px auto 15px; 
-            border: 2px solid rgba(212, 175, 55, 0.3);
+            border: 1px solid #333; 
             overflow: hidden; 
-            box-shadow: 0 0 40px rgba(212, 175, 55, 0.2);
+            box-shadow: 0 0 25px rgba(0, 255, 136, 0.1);
             position: relative;
             z-index: 10;
         }
@@ -80,32 +69,16 @@
             .key-icon { width: 110px; height: 110px; margin: -55px auto 20px; }
         }
 
-        h1 { 
-            font-size: 28px; 
-            font-weight: 900; 
-            margin: 0 0 10px; 
-            background: linear-gradient(90deg, #f3e5ab, #d4af37, #f3e5ab);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 1px;
-            animation: shine 3s linear infinite;
-        }
-
-        @keyframes shine {
-            to { background-position: 200% center; }
-        }
-
-        .subtitle { color: #888; font-size: 14px; margin-bottom: 30px; letter-spacing: 0.5px; }
+        h1 { font-size: 28px; font-weight: bold; margin-bottom: 8px; }
+        .subtitle { color: #888; font-size: 14px; margin-bottom: 30px; }
 
         .card { 
             background: var(--card); 
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(212, 175, 55, 0.15); 
+            border: 1px solid #222; 
             border-radius: 28px; 
             padding: 40px 30px 30px; 
             text-align: center; 
-            box-shadow: 0 20px 60px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.05); 
+            box-shadow: 0 15px 50px rgba(0,0,0,0.6); 
             position: relative;
         }
 
@@ -120,7 +93,6 @@
             margin-bottom: 25px; 
             position: relative; 
             overflow: hidden; 
-            box-shadow: inset 0 0 20px rgba(0, 255, 136, 0.05);
         }
         
         #finalKey { 
@@ -134,24 +106,23 @@
         .btn { 
             width: 100%; 
             padding: 18px; 
-            background: linear-gradient(135deg, #d4af37 0%, #f3e5ab 50%, #d4af37 100%); 
-            background-size: 200% auto;
+            background: #ffffff; 
             color: #000; 
             border: none; 
             border-radius: 16px; 
             font-size: 16px; 
-            font-weight: 900; 
+            font-weight: 800; 
             cursor: pointer; 
-            transition: all 0.4s ease; 
-            letter-spacing: 0.5px;
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
         }
 
         .btn:hover { 
-            transform: translateY(-3px); 
-            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
-            background-position: right center;
+            transform: scale(1.03); 
+            background: var(--accent); 
+            box-shadow: 0 10px 20px rgba(0,255,136,0.2);
         }
+
+        .btn-red { background: var(--error); color: white; margin-top: 20px; }
 
         .footer { 
             margin-top: 80px; 
@@ -166,66 +137,98 @@
 <body>
 
 <div class="container">
-    <div class="vip-badge">★ VIP ACCESS ★</div>
-
-    <div class="key-icon">
-        <img src="./assets/logo.png" alt="UKM">
-    </div>
-
-    <h1>Access Unlocked</h1>
-    <p class="subtitle">Your device-locked license key is ready.</p>
-
-    <div class="card">
-        <h2>Generation Success!</h2>
-        <p class="card-p">This key is locked to your device. Share it, and it won't work for others.</p>
-
-        <div class="key-box">
-            <span id="finalKey">SECURE FETCHING...</span>
+    <div id="mainContainer">
+        <div class="key-icon">
+            <img src="./assets/logo.png" alt="UKM">
         </div>
 
-        <button class="btn" id="copyBtn" onclick="copyKey()">
-            COPY TO CLIPBOARD
-        </button>
+        <h1>Access Unlocked</h1>
+        <p class="subtitle">Your device-locked license key is ready.</p>
+
+        <div class="card">
+            <h2>Generation Success!</h2>
+            <p class="card-p">This key is locked to your device. Share it, and it won't work for others.</p>
+
+            <div class="key-box">
+                <span id="finalKey">SECURE FETCHING...</span>
+            </div>
+
+            <button class="btn" id="copyBtn" onclick="copyKey()">
+                COPY TO CLIPBOARD
+            </button>
+        </div>
+    </div>
+
+    <div id="bypassContainer">
+        <div class="error-card">
+            <div class="error-icon">🚫</div>
+            <div class="error-title">Bypass Detected!</div>
+            <p style="color:#888; font-size: 14px; line-height: 1.5;">Direct access is prohibited. Please use the official link from the script to generate your key.</p>
+            <button class="btn btn-red" onclick="location.href='steps.html'">RETURN TO STEPS</button>
+        </div>
     </div>
 
     <div class="footer">FOX ONE SECURITY SYSTEM</div>
 </div>
 
 <script>
-    async function generateLockedKey() {
-        try {
-            const response = await fetch('https://api.ipify.org?format=json');
-            const data = await response.json();
-            const ip = data.ip;
-
-            const day = Math.floor(Date.now() / 86400000);
-            const ipSeed = parseInt(ip.replace(/\./g, '').substring(0, 6)); 
-            
-            let seed = ipSeed + day + 2026; 
-            
-            function rnd() { 
-                var x = Math.sin(seed++) * 10000; 
-                return Math.abs(x - Math.floor(x)); 
+    async function checkSecurity() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const source = urlParams.get('source');
+        const referrer = document.referrer;
+        
+        if (source === "official" || referrer.includes("earnlinks.io") || referrer.includes("lootdest.org") || referrer.includes("steps.html")) {
+            if (source === "official") {
+                const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+                window.history.replaceState({}, document.title, cleanUrl);
             }
-            
-            const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-            let segments = [];
-            for(let i=0; i<4; i++) {
-                let s = "";
-                for(let j=0; j<4; j++) {
-                    let r = Math.floor(rnd() * chars.length);
-                    s += chars.charAt(r);
-                }
-                segments.push(s);
-            }
-
-            const finalKey = "FOXVPN-" + segments.join("-");
-            document.getElementById('finalKey').innerText = finalKey;
-
-        } catch (err) {
-            document.getElementById('finalKey').innerText = "CONNECT TO INTERNET";
+            document.getElementById('mainContainer').style.display = "block";
+            generateLockedKey(); 
+        } else {
+            document.getElementById('mainContainer').style.display = "none";
+            document.getElementById('bypassContainer').style.display = "block";
+            document.getElementById('finalKey').innerText = "ACCESS DENIED";
         }
     }
+
+    async function generateLockedKey() {
+    try {
+        const response = await fetch('https://api.ipify.org?format=json');
+        const data = await response.json();
+        const ip = data.ip;
+
+        // Aaj ki Date (Daily expiry ke liye)
+        const day = Math.floor(Date.now() / 86400000);
+        const ipSeed = parseInt(ip.replace(/\./g, '').substring(0, 6)); 
+        
+        // Seed: IP + Date + Year (Ye App se match hona chahiye)
+        let seed = ipSeed + day + 2026; 
+        
+        function rnd() { 
+            var x = Math.sin(seed++) * 10000; 
+            return Math.abs(x - Math.floor(x)); 
+        }
+        
+        const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+        let segments = [];
+        for(let i=0; i<4; i++) {
+            let s = "";
+            for(let j=0; j<4; j++) {
+                let r = Math.floor(rnd() * chars.length);
+                s += chars.charAt(r);
+            }
+            segments.push(s);
+        }
+
+        const finalKey = "FOXVPN-" + segments.join("-");
+        document.getElementById('finalKey').innerText = finalKey;
+
+    } catch (err) {
+        document.getElementById('finalKey').innerText = "FIX YOUR MOBILE NETWORK 🚫";
+    }
+}
+
+
 
     function copyKey() {
         const keyText = document.getElementById('finalKey').innerText;
@@ -237,12 +240,12 @@
             btn.style.background = "#00ff88";
             setTimeout(() => { 
                 btn.innerText = "COPY TO CLIPBOARD"; 
-                btn.style.background = ""; 
+                btn.style.background = "#ffffff";
             }, 2000);
         });
     }
 
-    window.onload = generateLockedKey;
+    window.onload = checkSecurity;
 </script>
 </body>
 </html>
