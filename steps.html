@@ -5,10 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GET YOUR FREE KEY | FOX ONE</title>
     <style>
-        :root { --bg: #000000; --card: #121212; --text: #ffffff; --accent: #ffffff; --warning-bg: #1a1505; --warning-border: #3d3002; --warning-text: #eec136; }
+        /* VIP LUXURY COLOR PALETTE */
+        :root { 
+            --bg: #050505; 
+            --card: #0f0f0f; 
+            --text: #ffffff; 
+            --accent: #d4af37; /* Premium Gold */
+            --warning-bg: #1a1505; 
+            --warning-border: #3d3002; 
+            --warning-text: #eec136; 
+        }
         
         body { 
-            background-color: var(--bg); 
+            background: radial-gradient(circle at top, #1a1a1a 0%, #000000 80%);
             color: var(--text); 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
             display: flex; 
@@ -24,11 +33,17 @@
             width: 100%; 
             max-width: 400px; 
             text-align: center; 
+            animation: fadeIn 0.8s ease-out;
         }
 
-        /* --- LOGO FIX FOR PC & MOBILE --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* LOGO GLOW EFFECT */
         .key-icon { 
-            background: #1a1a1a; 
+            background: #111; 
             width: 80px; 
             height: 80px; 
             border-radius: 50%; 
@@ -36,9 +51,10 @@
             justify-content: center; 
             align-items: center; 
             margin: 0 auto 15px; 
-            border: 1px solid #333; 
+            border: 2px solid #333;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.15), inset 0 0 15px rgba(212, 175, 55, 0.1);
             overflow: hidden;
-            box-shadow: 0 0 20px rgba(255,255,255,0.05);
+            position: relative;
         }
 
         .key-icon img {
@@ -52,26 +68,89 @@
             .key-icon { width: 110px; height: 110px; } 
         }
 
-        h1 { font-size: 28px; font-weight: bold; margin-bottom: 10px; }
-        .subtitle { color: #888; font-size: 14px; margin-bottom: 30px; }
+        /* GOLD GRADIENT HEADING */
+        h1 { 
+            font-size: 28px; 
+            font-weight: 800; 
+            margin-bottom: 10px; 
+            background: linear-gradient(135deg, #ffffff 0%, #d4af37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 1px;
+        }
+        
+        .subtitle { color: #888; font-size: 14px; margin-bottom: 30px; letter-spacing: 0.5px; }
         
         .progress-container { display: flex; align-items: center; justify-content: space-between; margin-bottom: 25px; }
         .step-indicator { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #888; }
         .circle { width: 22px; height: 22px; border: 2px solid #333; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 10px; }
-        .circle.active { border-color: var(--text); color: var(--text); }
-        .line { flex-grow: 1; height: 2px; background: #222; margin: 0 15px; }
+        .circle.active { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 10px rgba(212, 175, 55, 0.4); }
+        .line { flex-grow: 1; height: 2px; background: #222; margin: 0 15px; position: relative; }
+        .line::after { content: ''; position: absolute; top: 0; left: 0; height: 100%; width: 50%; background: linear-gradient(90deg, #333, var(--accent)); }
 
-        .card { background: var(--card); border: 1px solid #222; border-radius: 24px; padding: 30px; text-align: left; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
-        h2 { font-size: 20px; margin-bottom: 15px; }
-        .card-p { color: #888; font-size: 15px; line-height: 1.5; margin-bottom: 25px; }
+        /* PREMIUM GLASS CARD */
+        .card { 
+            background: rgba(15, 15, 15, 0.8); 
+            backdrop-filter: blur(10px);
+            border: 1px solid #2a2a2a; 
+            border-radius: 24px; 
+            padding: 30px; 
+            text-align: left; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.05); 
+        }
+        
+        h2 { font-size: 20px; margin-bottom: 15px; font-weight: 600; color: #fff; }
+        .card-p { color: #999; font-size: 15px; line-height: 1.6; margin-bottom: 25px; }
 
-        .warning { background: var(--warning-bg); border: 1px solid var(--warning-border); border-radius: 12px; padding: 15px; display: flex; gap: 12px; margin-bottom: 30px; }
-        .warning-icon { color: var(--warning-text); font-size: 18px; }
-        .warning-title { color: var(--warning-text); font-weight: bold; font-size: 14px; }
-        .warning-text { color: #8a701f; font-size: 12px; }
+        /* VIP WARNING BOX */
+        .warning { 
+            background: rgba(26, 21, 5, 0.6); 
+            border: 1px solid var(--warning-border); 
+            border-radius: 12px; 
+            padding: 15px; 
+            display: flex; 
+            gap: 12px; 
+            margin-bottom: 30px; 
+            box-shadow: inset 0 0 20px rgba(238, 193, 54, 0.05);
+        }
+        .warning-icon { color: var(--warning-text); font-size: 18px; text-shadow: 0 0 10px rgba(238, 193, 54, 0.5); }
+        .warning-title { color: var(--warning-text); font-weight: bold; font-size: 14px; letter-spacing: 0.5px; }
+        .warning-text { color: #8a701f; font-size: 12px; margin-top: 4px; }
 
-        .btn { width: 100%; padding: 16px; background: #ffffff; color: #000; border: none; border-radius: 14px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s ease; }
-        .btn:hover { transform: scale(1.02); background: #00ff88; }
+        /* LUXURY BUTTON */
+        .btn { 
+            width: 100%; 
+            padding: 16px; 
+            background: linear-gradient(135deg, #ffffff 0%, #d4af37 100%); 
+            color: #000; 
+            border: none; 
+            border-radius: 14px; 
+            font-size: 16px; 
+            font-weight: 800; 
+            cursor: pointer; 
+            transition: all 0.4s ease; 
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 0.5px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: 0.5s;
+        }
+
+        .btn:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.3);
+        }
+        
+        .btn:hover::before { left: 100%; }
+        .btn:active { transform: scale(0.98); }
     </style>
 </head>
 <body>
@@ -104,6 +183,7 @@
             </div>
         </div>
 
+        <!-- LINK YAHAN BILKUL SAME HAI -->
         <button class="btn" onclick="location.href='https://vplinks.in/way3zm'">
             Continue to Step ➜
         </button>
