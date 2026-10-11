@@ -175,19 +175,26 @@
     async function checkSecurity() {
         const urlParams = new URLSearchParams(window.location.search);
         const source = urlParams.get('source');
-        const referrer = document.referrer;
         
-        if (source === "official" || referrer.includes("earnlinks.io") || referrer.includes("lootdest.org") || referrer.includes("steps.html")) {
-            if (source === "official") {
-                const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
-                window.history.replaceState({}, document.title, cleanUrl);
-            }
+        console.log('=== Security Check ===');
+        console.log('Source:', source);
+        console.log('Referrer:', document.referrer);
+        console.log('==================');
+
+        const isAllowed = source === "official";
+        
+        if (isAllowed) {
+            const cleanUrl = window.location.protocol + "//" + window.location.host + window.location.pathname;
+            window.history.replaceState({}, document.title, cleanUrl);
+            
             document.getElementById('mainContainer').style.display = "block";
+            document.getElementById('bypassContainer').style.display = "none";
+            
             generateLockedKey(); 
         } else {
+            // BLOCK: Direct access, no VPLink
             document.getElementById('mainContainer').style.display = "none";
             document.getElementById('bypassContainer').style.display = "block";
-            document.getElementById('finalKey').innerText = "ACCESS DENIED";
         }
     }
 
@@ -224,7 +231,7 @@
         document.getElementById('finalKey').innerText = finalKey;
 
     } catch (err) {
-        document.getElementById('finalKey').innerText = "FIX YOUR MOBILE NETWORK 🚫";
+        document.getElementById('finalKey').innerText = "CONNECT TO INTERNET";
     }
 }
 
